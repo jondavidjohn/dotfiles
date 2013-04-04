@@ -1,0 +1,39 @@
+[user]
+	name = Jonathan Johnson
+	email = me@jondavidjohn.com
+[push]
+	default = current
+[branch]
+	autosetupmerge = true
+	autosetuprebase = always
+[alias]
+	pullmerge = pull --no-rebase
+	st = status
+	d = diff
+	ci = commit -v
+	cia = commit -v -a
+	co = checkout
+	cp = cherry-pick
+	dci = svn dcommit
+	l = log
+	ll = log -p
+	lm = log master..
+	llm = log -p master..
+	b = branch
+	sub = submodule
+	subup = submodule update --init --recursive
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+[core]
+	excludesfile = ~/.gitignore
+	editor = vim
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+[diff]
+	tool = opendiff
+[merge]
+	tool = opendiff
+	conflictstyle = diff3
+[rerere]
+	enabled = true

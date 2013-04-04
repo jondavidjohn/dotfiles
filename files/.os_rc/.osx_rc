@@ -1,0 +1,33 @@
+
+alias nt='cd ~/Notes'
+alias nxsa='cd /usr/local/etc/nginx/sites-available'
+alias nxse='cd /usr/local/etc/nginx/sites-enabled'
+alias nx='cd /usr/local/etc/nginx'
+alias cfconf='cd ~/Source/cf-config'
+alias phplog='tail -f /usr/local/var/log/php/error.log'
+alias mysql_config=/usr/local/mysql/bin/mysql_config
+
+# homebrew path adjustments
+export PATH="$(brew --prefix josegonzalez/php/php53)/bin:$PATH"
+export PATH="$PATH:/usr/local/share/npm/bin" Add NPM to PATH
+export PATH="$PATH:/usr/local/sbin"
+
+#BASH Completion - Homebrew
+if [[ -z "$BASH_COMPLETION" ]]; then
+	export BASH_COMPLETION=/usr/local/etc/bash_completion
+fi
+
+if [[ -z "$BASH_COMPLETION_DIR" ]]; then
+	export BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
+fi
+
+if [[ -z "$BASH_COMPLETION_COMPAT_DIR" ]]; then
+	export BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+fi
+
+if [ -f $BASH_COMPLETION ]; then
+. $BASH_COMPLETION
+fi
+
+
+# vim: set filetype=sh:

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# check for git and clone into ~/.dotfiles
+
+# Per OS deps
+
+## OSX
+
+### homebrew
+
+
+# Package sources
+
+## OSX - homebrew
+## Debian - apt-get
+## RHEL - yum
+
+
+# General Deps
+
+## tree
+## node
+## npm
+## vim
+## python
+## rvm
+## git
+## svn
+
+# link all files in ~/.dotfiles/files

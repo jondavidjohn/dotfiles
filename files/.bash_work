@@ -1,0 +1,57 @@
+workon() {
+	if [ "$1" != "" ]; then
+		cd ~/Source
+		cd `ls -1 | grep -i -m 1 "$1"`
+		if [ -d .git ]; then
+			vim . -c "Git fetch"
+		elif [ -d wp-content ]; then
+			cd wp-content
+			vim . -c "Git fetch"
+		else
+			vim .
+		fi
+	else
+		echo "You have to give me something to go on here!"
+	fi
+}
+
+prj() {
+	if [ "$2" != "" ]; then
+		prj_path=~/Projects/`ls -1 ~/Projects | grep -i -m 1 "$1"`
+		vim "$prj_path/`ls -1 $prj_path | grep -i -m 1 "$2"`" -c "Git pull"
+	else
+		cd ~/Projects
+		if [ "$1" != "" ]; then
+			cd `ls -1 | grep -i -m 1 "$1"`
+		fi
+	fi
+}
+
+src() {
+	if [ "$2" != "" ]; then
+		prj_path=~/Source/`ls -1 ~/Source | grep -i -m 1 "$1"`
+		vim "$prj_path/`ls -1 $prj_path | grep -i -m 1 "$2"`" -c "Git pull"
+	else
+		cd ~/Source
+		if [ "$1" != "" ]; then
+			cd `ls -1 | grep -i -m 1 "$1"`
+		fi
+	fi
+}
+
+resetwptest() {
+	read -p "Wipe out wordpress.dev for fresh install? " -n 1
+	if [[ $REPLY =~ ^[Yy]$ ]]
+	then
+		mysql -u root -proot -e "DROP DATABASE wordpress_test;"
+		mysql -u root -proot -e "CREATE DATABASE wordpress_test;"
+	fi
+	echo ""
+}
+
+#CrowdFavorite
+alias cfssh="~/Source/server-connect/cfssh"
+export PATH="$PATH:~/Source/cf-config/git-bin"
+export PATH="$PATH:~/Source/cf-config/bin"
+
+# vim: set filetype=sh:
