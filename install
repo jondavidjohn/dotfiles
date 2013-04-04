@@ -28,3 +28,7 @@
 ## svn
 
 # link all files in ~/.dotfiles/files
+
+# link os specific files ~/.dotfiles/os/<OS>/
+
+# if `--work` specified also link .bash_work from ~/.dotfiles/work/<WORK>/
