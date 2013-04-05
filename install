@@ -1,34 +1,69 @@
 #!/bin/bash
 
-# check for git and clone into ~/.dotfiles
-
 # Per OS deps
-
 ## OSX
-
+### Command Line build tools
 ### homebrew
 
-
-# Package sources
-
-## OSX - homebrew
-## Debian - apt-get
-## RHEL - yum
-
-
 # General Deps
-
 ## tree
 ## node
 ## npm
 ## vim
 ## python
-## rvm
+## rvm (and latest ruby)
 ## git
 ## svn
+## ack
+## bash_completion
 
-# link all files in ~/.dotfiles/files
+# check for git and clone into ~/.dotfiles
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+RED="\033[31m"
+ENDCOLOR="\033[0m"
 
-# link os specific files ~/.dotfiles/os/<OS>/
+echo -e "${YELLOW}  Linking general files...${ENDCOLOR}"
+while read location; do
 
-# if `--work` specified also link .bash_work from ~/.dotfiles/work/<WORK>/
+	name=$(basename "$location")
+
+	if [ -d "$HOME/$name" ]; then
+		rm -rf "$HOME/$name"
+	fi
+
+	echo -e "${BLUE}    $name${ENDCOLOR}"
+	ln -nsf "$location" "$HOME/$name"
+
+done < <(find "$HOME/.dotfiles/general" -depth 1)
+
+echo -e "${YELLOW}  Linking $OS files...${ENDCOLOR}"
+while read location; do
+
+	name=$(basename "$location")
+
+	if [ -d "$HOME/$name" ]; then
+		rm -rf "$HOME/$name"
+	fi
+
+	echo -e "${BLUE}    $name${ENDCOLOR}"
+	ln -nsf "$location" "$HOME/$name"
+
+done < <(find "$HOME/.dotfiles/os/$OS" -depth 1)
+
+if [[ $* == *--work* ]]; then
+	echo -e "${YELLOW}  Linking $WORK files...${ENDCOLOR}"
+	while read location; do
+
+		name=$(basename "$location")
+
+		if [ -d "$HOME/$name" ]; then
+			rm -rf "$HOME/$name"
+		fi
+
+		echo -e "${BLUE}    $name${ENDCOLOR}"
+		ln -nsf "$location" "$HOME/$name"
+
+	done < <(find "$HOME/.dotfiles/work/$WORK" -depth 1)
+fi
