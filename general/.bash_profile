@@ -1,7 +1,7 @@
 export EDITOR=vim
 
 alias runsmtp='python -m smtpd -n -c DebuggingServer localhost:1025'
-
+alias runhttp='python -m SimpleHTTPServer'
 alias ..='cd ..'
 alias tree='tree --dirsfirst -C'
 alias tr='tree -L 1'
@@ -20,9 +20,13 @@ alias vi='vim'
 # more PATH adjustments
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
+# load in moar configs
+[[ -e "$HOME/.bash_os" ]] && source "$HOME/.bash_os"
+[[ -e "$HOME/.bash_work" ]] && source "$HOME/.bash_work"
+
 # Responsive Prompt
 parse_git_branch() {
-	if [[ -f /usr/local/etc/bash_completion.d/git-completion.bash ]]; then
+	if [[ -f "$BASH_COMPLETION_DIR/git-completion.bash" ]]; then
 		branch=`__git_ps1 "%s"`
 	else
 		ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
