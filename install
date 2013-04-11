@@ -25,6 +25,7 @@ RED="\033[31m"
 ENDCOLOR="\033[0m"
 
 OS="unkown"
+WORK="crowdfavorite"
 
 if [[ `uname` == 'Darwin' ]]; then
 	OS='osx'
@@ -77,3 +78,5 @@ if [[ $* == *--work* ]]; then
 
 	done < <(find "$HOME/.dotfiles/work/$WORK" -depth 1)
 fi
+
+source ~/.bash_profile
