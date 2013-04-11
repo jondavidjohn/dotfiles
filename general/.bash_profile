@@ -11,7 +11,7 @@ alias ls='ls -G'
 alias ll='ls -lh'
 alias l='ll'
 alias lla='ll -A'
-alias la ='lla'
+alias la='lla'
 alias vi='vim'
 
 # Load RVM into a shell session *as a function*

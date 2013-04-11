@@ -24,6 +24,16 @@ BLUE="\033[34m"
 RED="\033[31m"
 ENDCOLOR="\033[0m"
 
+OS="unkown"
+
+if [[ `uname` == 'Darwin' ]]; then
+	OS='osx'
+elif type apt-get &> /dev/null; then
+	OS='debian'
+elif type yum &> /dev/null; then
+	OS='rhel'
+fi
+
 echo -e "${YELLOW}  Linking general files...${ENDCOLOR}"
 while read location; do
 
