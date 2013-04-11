@@ -1,3 +1,5 @@
+alias cfconf='cd ~/Source/cf-config'
+
 workon() {
 	if [ "$1" != "" ]; then
 		cd ~/Source
