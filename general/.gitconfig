@@ -8,7 +8,7 @@
 	autosetuprebase = always
 [alias]
 	pullmerge = pull --no-rebase
-	st = status
+	st = status -sb
 	d = diff
 	ci = commit -v
 	cia = commit -v -a
@@ -20,9 +20,9 @@
 	lm = log master..
 	llm = log -p master..
 	b = branch
-	sub = submodule
-	subup = submodule update --init --recursive
+	subup = "!f() { git submodule sync; git submodule update --init --recursive; }; f"
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+	ready = rebase -i @{u}
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
