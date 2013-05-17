@@ -1,4 +1,4 @@
-alias cfconf='cd ~/Source/cf-config'
+alias cfconf='cd ~/Source/cf/cf-config'
 
 workon() {
 	if [ "$1" != "" ]; then
@@ -29,6 +29,18 @@ prj() {
 	fi
 }
 
+www() {
+	if [ "$2" != "" ]; then
+		prj_path=~/Sites/`ls -1 ~/Source | grep -i -m 1 "$1"`
+		vim "$prj_path/`ls -1 $prj_path | grep -i -m 1 "$2"`" -c "Git pull"
+	else
+		cd ~/Sites
+		if [ "$1" != "" ]; then
+			cd `ls -1 | grep -i -m 1 "$1"`
+		fi
+	fi
+}
+
 src() {
 	if [ "$2" != "" ]; then
 		prj_path=~/Source/`ls -1 ~/Source | grep -i -m 1 "$1"`
@@ -52,8 +64,7 @@ resetwptest() {
 }
 
 #CrowdFavorite
-alias cfssh="~/Source/server-connect/cfssh"
-export PATH="$PATH:~/Source/cf-config/git-bin"
-export PATH="$PATH:~/Source/cf-config/bin"
+export PATH="$PATH:~/Source/cf/cf-config/git-bin"
+export PATH="$PATH:~/Source/cf/cf-config/bin"
 
 # vim: set filetype=sh:

@@ -19,6 +19,7 @@ alias vi='vim'
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:/usr/local/share/python # Python installed scripts
 
 # load in moar configs
 [[ -e "$HOME/.bash_os" ]] && source "$HOME/.bash_os"
@@ -88,9 +89,16 @@ prompt() {
 		exit_status='\[\e[0;31m\]› \[\e[00m\]'
 	fi
 
-	prompt='\[\e[0;33m\]$(working_directory)\[\e[00m\]\[\e[0;32m\] $(parse_git_branch)\[\e[00m\]'
+	prompt='\[\e[0;33m\]$(working_directory)\[\e[00m\]'
+	if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
+		prompt="$prompt\[\e[0;31m\] $(parse_git_branch)\[\e[00m\]"
+	else
+		prompt="$prompt\[\e[0;32m\] $(parse_git_branch)\[\e[00m\]"
+	fi
 	PS1=$prompt$exit_status
 }
 
 PROMPT_COMMAND=prompt
 
+
+test -f ~/.bashrc && source ~/.bashrc # Crowd Favorite
