@@ -31,9 +31,9 @@
 	status = auto
 	branch = auto
 [diff]
-	tool = opendiff
+	tool = meld
 [merge]
-	tool = opendiff
+	tool = meld
 	conflictstyle = diff3
 [rerere]
 	enabled = true
