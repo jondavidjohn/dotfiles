@@ -2,7 +2,6 @@ export EDITOR=vim
 
 alias runsmtp='python -m smtpd -n -c DebuggingServer localhost:1025'
 alias runhttp='python -m SimpleHTTPServer'
-alias ..='cd ..'
 alias tree='tree --dirsfirst -C'
 alias tr='tree -L 1'
 alias tr2='tree -L 2'
@@ -13,6 +12,10 @@ alias l='ll'
 alias lla='ll -A'
 alias la='lla'
 alias vi='vim'
+
+..() {
+	for i in $(seq $1); do cd ..; done;
+}
 
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
