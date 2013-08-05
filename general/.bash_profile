@@ -85,6 +85,26 @@ working_directory() {
 	fi
 }
 
+parse_remote_state() {
+	remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
+	if [[ "$remote_state" != "" ]]; then
+		state_output="\[\e[00m\]\[\e[0;34m\][\[\e[00m\]"
+		if [[ "$remote_state" == *ahead* ]] && [[ "$remote_state" == *behind* ]]; then
+			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
+			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
+			state_output="$state_output\[\e[0;31m\]$behind_num\[\e[00m\],\[\e[0;32m\]$ahead_num\[\e[00m\]"
+		elif [[ "$remote_state" == *ahead* ]]; then
+			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
+			state_output="$state_output\[\e[0;32m\]$ahead_num\[\e[00m\]"
+		elif [[ "$remote_state" == *behind* ]]; then
+			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
+			state_output="$state_output\[\e[0;31m\]$behind_num\[\e[00m\]"
+		fi
+		state_output="$state_output\[\e[0;34m\]]\[\e[00m\]"
+		echo "$state_output "
+	fi
+}
+
 prompt() {
 	if [[ $? -eq 0 ]]; then
 		exit_status='\[\e[0;34m\]› \[\e[00m\]'
@@ -94,9 +114,9 @@ prompt() {
 
 	prompt='\[\e[0;33m\]$(working_directory)\[\e[00m\]'
 	if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
-		prompt="$prompt\[\e[0;31m\] $(parse_git_branch)\[\e[00m\]"
+		prompt="$prompt\[\e[0;31m\] $(parse_git_branch)$(parse_remote_state)\[\e[00m\]"
 	else
-		prompt="$prompt\[\e[0;32m\] $(parse_git_branch)\[\e[00m\]"
+		prompt="$prompt\[\e[0;32m\] $(parse_git_branch)$(parse_remote_state)\[\e[00m\]"
 	fi
 	PS1=$prompt$exit_status
 }
