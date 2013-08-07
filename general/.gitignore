@@ -68,4 +68,5 @@ pip-log.txt
 
 ## Vim files
 *.swp
+*.swo
 

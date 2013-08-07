@@ -1,5 +1,11 @@
 export EDITOR=vim
 
+GREEN="\[\e[0;32m\]"
+BLUE="\[\e[0;34m\]"
+RED="\[\e[0;31m\]"
+YELLOW="\[\e[0;33m\]"
+COLOREND="\[\e[00m\]"
+
 alias runsmtp='python -m smtpd -n -c DebuggingServer localhost:1025'
 alias runhttp='python -m SimpleHTTPServer'
 alias tree='tree --dirsfirst -C'
@@ -47,7 +53,11 @@ parse_git_branch() {
 	fi
 
 	if [[ $branch != "" ]]; then
-		echo "$branch "
+		if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working directory clean" ]]; then
+			echo "${GREEN}$branch${COLOREND} "
+		else
+			echo "${RED}$branch${COLROEND} "
+		fi
 	fi
 }
 
@@ -59,6 +69,7 @@ working_directory() {
 		in_home=1
 	fi
 
+	workingdir=""
 	if [[ `tput cols` -lt 110 ]]; then
 		first="/`echo $dir | cut -d / -f 2`"
 		letter=${first:0:2}
@@ -70,55 +81,53 @@ working_directory() {
 		end=`echo "$dir" | rev | cut -d / -f1 | rev`
 
 		if [[ $proj == "" ]]; then
-			echo $dir
+			workingdir="$dir"
 		elif [[ $proj == "~" ]]; then
-			echo $dir
+			workingdir="$dir"
 		elif [[ $dir =~ "$first/$proj"$ ]]; then
-			echo $beginning
+			workingdir="$beginning"
 		elif [[ $dir =~ "$first/$proj/$end"$ ]]; then
-			echo "$beginning/$end"
+			workingdir="$beginning/$end"
 		else
-			echo "$beginning/…/$end"
+			workingdir="$beginning/…/$end"
 		fi
 	else
-		echo $dir
+		workingdir="$dir"
 	fi
+
+	echo -e "${YELLOW}$workingdir${COLOREND} "
 }
 
 parse_remote_state() {
 	remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
 	if [[ "$remote_state" != "" ]]; then
-		state_output="\[\e[00m\]\[\e[0;34m\][\[\e[00m\]"
+		out="${BLUE}[${COLOREND}"
+
 		if [[ "$remote_state" == *ahead* ]] && [[ "$remote_state" == *behind* ]]; then
 			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
 			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-			state_output="$state_output\[\e[0;31m\]$behind_num\[\e[00m\],\[\e[0;32m\]$ahead_num\[\e[00m\]"
+			out="$out${RED}$behind_num${COLOREND},${GREEN}$ahead_num${COLOREND}"
 		elif [[ "$remote_state" == *ahead* ]]; then
 			ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-			state_output="$state_output\[\e[0;32m\]$ahead_num\[\e[00m\]"
+			out="$out${GREEN}$ahead_num${COLOREND}"
 		elif [[ "$remote_state" == *behind* ]]; then
 			behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
-			state_output="$state_output\[\e[0;31m\]$behind_num\[\e[00m\]"
+			out="$out${RED}$behind_num${COLOREND}"
 		fi
-		state_output="$state_output\[\e[0;34m\]]\[\e[00m\]"
-		echo "$state_output "
+
+		out="$out${BLUE}]${COLOREND}"
+		echo "$out "
 	fi
 }
 
 prompt() {
 	if [[ $? -eq 0 ]]; then
-		exit_status='\[\e[0;34m\]› \[\e[00m\]'
+		exit_status="${BLUE}›${COLOREND} "
 	else
-		exit_status='\[\e[0;31m\]› \[\e[00m\]'
+		exit_status="${RED}›${COLOREND} "
 	fi
 
-	prompt='\[\e[0;33m\]$(working_directory)\[\e[00m\]'
-	if [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]]; then
-		prompt="$prompt\[\e[0;31m\] $(parse_git_branch)$(parse_remote_state)\[\e[00m\]"
-	else
-		prompt="$prompt\[\e[0;32m\] $(parse_git_branch)$(parse_remote_state)\[\e[00m\]"
-	fi
-	PS1=$prompt$exit_status
+	PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)$exit_status"
 }
 
 PROMPT_COMMAND=prompt
