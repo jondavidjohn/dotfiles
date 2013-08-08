@@ -67,4 +67,8 @@ resetwptest() {
 export PATH="$PATH:~/Source/cf/cf-config/git-bin"
 export PATH="$PATH:~/Source/cf/cf-config/bin"
 
+test -f ~/.cfpaths && source ~/.cfpaths # Crowd Favorite - Source CF paths, prompts, etc
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
 # vim: set filetype=sh:

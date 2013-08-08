@@ -131,6 +131,3 @@ prompt() {
 }
 
 PROMPT_COMMAND=prompt
-
-
-test -f ~/.bashrc && source ~/.bashrc # Crowd Favorite
