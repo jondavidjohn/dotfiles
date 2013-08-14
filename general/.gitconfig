@@ -23,6 +23,8 @@
 	subup = "!f() { git submodule sync; git submodule update --init --recursive; }; f"
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
 	ready = rebase -i @{u}
+	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..$(git rev-parse --abbrev-ref --symbolic-full-name @{u}))
+	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' $(git rev-parse --abbrev-ref --symbolic-full-name @{u})..)
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
