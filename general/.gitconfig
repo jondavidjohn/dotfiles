@@ -20,7 +20,7 @@
 	lm = log master..
 	llm = log -p master..
 	b = branch
-	subup = "!f() { git submodule sync; git submodule update --init --recursive; }; f"
+	subup = !(git submodule sync && git submodule update --init --recursive)
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
 	ready = rebase -i @{u}
 	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
