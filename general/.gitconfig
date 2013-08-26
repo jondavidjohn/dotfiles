@@ -26,6 +26,7 @@
 	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
 	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
+	check = diff --check
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
