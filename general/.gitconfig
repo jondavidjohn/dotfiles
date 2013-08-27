@@ -10,6 +10,7 @@
 	pullmerge = pull --no-rebase
 	st = status -sb
 	d = diff
+	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
 	ci = commit -v
 	cia = commit -v -a
 	co = checkout
