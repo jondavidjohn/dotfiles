@@ -18,6 +18,7 @@ alias l='ll'
 alias lla='ll -A'
 alias la='lla'
 alias vi='vim'
+alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
 
 ..() {
 	for i in $(seq $1); do cd ..; done;
