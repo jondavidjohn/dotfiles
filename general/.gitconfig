@@ -43,3 +43,5 @@
 	conflictstyle = diff3
 [rerere]
 	enabled = true
+[github]
+	user = jondavidjohn
