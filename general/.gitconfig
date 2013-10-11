@@ -7,6 +7,7 @@
 	autosetupmerge = true
 	autosetuprebase = always
 [alias]
+	tpush = push --follow-tags
 	pullmerge = pull --no-rebase
 	st = status -sb
 	d = diff
