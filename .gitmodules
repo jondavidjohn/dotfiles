@@ -1,3 +1,6 @@
 [submodule "general/.vim"]
 	path = general/.vim
 	url = git@github.com:jondavidjohn/vimconf.git
+[submodule "misc/alfred/manage-hidden-files"]
+	path = misc/alfred/manage-hidden-files
+	url = git@github.com:BubiDevs/manage-hidden-files.git
