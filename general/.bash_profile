@@ -3,7 +3,10 @@ export EDITOR=vim
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[0;34m\]"
 RED="\[\e[0;31m\]"
+BRED="\e[1;31m\]"
 YELLOW="\[\e[0;33m\]"
+WHITE="\e[0;37m\]"
+BWHITE="\e[1;37m\]"
 COLOREND="\[\e[00m\]"
 
 alias runsmtp='python -m smtpd -n -c DebuggingServer localhost:1025'

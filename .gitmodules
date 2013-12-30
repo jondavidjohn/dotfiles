@@ -4,3 +4,9 @@
 [submodule "misc/alfred/manage-hidden-files"]
 	path = misc/alfred/manage-hidden-files
 	url = git@github.com:BubiDevs/manage-hidden-files.git
+[submodule "misc/alfred/hipchat-emoticons"]
+	path = misc/alfred/hipchat-emoticons
+	url = git@github.com:aortbals/alfred2-hipchat-emoticons-workflow.git
+[submodule "general/.subl"]
+	path = general/.subl
+	url = git@github.com:jondavidjohn/subl.git

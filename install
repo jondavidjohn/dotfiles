@@ -43,6 +43,7 @@ while read location; do
 		rm -rf "$HOME/$name"
 	fi
 
+
 	echo -e "${BLUE}    $name${ENDCOLOR}"
 	ln -nsf "$location" "$HOME/$name"
 
@@ -62,6 +63,10 @@ while read location; do
 
 done < <(find "$HOME/.dotfiles/os/$OS" -depth 1)
 
+# Link up ST3 config
+rm -rf "~/Library/Application Support/Sublime Text 3/Packages/User"
+ln -nsf "~/Library/Application Support/Sublime Text 3/Packages/User"  "$HOME/$name"
+
 if [[ $* == *--work* ]]; then
 	echo -e "${YELLOW}  Linking $WORK files...${ENDCOLOR}"
 	while read location; do
@@ -77,5 +82,6 @@ if [[ $* == *--work* ]]; then
 
 	done < <(find "$HOME/.dotfiles/work/$WORK" -depth 1)
 fi
+
 
 source ~/.bash_profile
