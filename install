@@ -64,8 +64,13 @@ while read location; do
 done < <(find "$HOME/.dotfiles/os/$OS" -depth 1)
 
 # Link up ST3 config
-rm -rf "~/Library/Application Support/Sublime Text 3/Packages/User"
-ln -nsf "~/Library/Application Support/Sublime Text 3/Packages/User"  "$HOME/$name"
+if [ $OS == 'osx' ]; then
+	echo -e "${YELLOW}  Linking ST3 Config${ENDCOLOR}"
+	if [ -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]; then
+		rm -rf ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+	fi
+	ln -nsf "$HOME/.subl" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
+fi
 
 if [[ $* == *--work* ]]; then
 	echo -e "${YELLOW}  Linking $WORK files...${ENDCOLOR}"
