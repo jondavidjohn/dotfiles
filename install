@@ -5,7 +5,7 @@
 ### Command Line build tools
 ### homebrew
 
-# General Deps
+# General Deps (Maybe?)
 ## tree
 ## node
 ## npm
@@ -15,6 +15,7 @@
 ## git
 ## svn
 ## ack
+## jshint
 ## bash_completion
 
 GREEN="\033[32m"
