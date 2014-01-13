@@ -7,6 +7,7 @@
 	autosetupmerge = true
 	autosetuprebase = always
 [alias]
+	hub = "!f(){ hub \"$@\"; }; f"
 	tpush = push --follow-tags
 	pullmerge = pull --no-rebase
 	st = status -sb
