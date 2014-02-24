@@ -28,6 +28,14 @@ alias sub='subl'
 	for i in $(seq $1); do cd ..; done;
 }
 
+tgz() {
+	tar -zcvf "$1.tar.gz" "$1"
+}
+
+untgz() {
+	tar -zxvf $1
+}
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
