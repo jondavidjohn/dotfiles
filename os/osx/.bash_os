@@ -1,11 +1,4 @@
 
-alias nt='cd ~/Notes'
-alias nxsa='cd /usr/local/etc/nginx/sites-available'
-alias nxse='cd /usr/local/etc/nginx/sites-enabled'
-alias nx='cd /usr/local/etc/nginx'
-alias phplog='tail -f /usr/local/var/log/php/error.log'
-alias mysql_config=/usr/local/mysql/bin/mysql_config
-
 # homebrew path adjustments
 export PATH="$PATH:/usr/local/share/npm/bin" Add NPM to PATH
 export PATH="$PATH:/usr/local/sbin"

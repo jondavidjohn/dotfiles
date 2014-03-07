@@ -25,7 +25,7 @@ RED="\033[31m"
 ENDCOLOR="\033[0m"
 
 OS="unkown"
-WORK="crowdfavorite"
+WORK="ifit"
 
 if [[ `uname` == 'Darwin' ]]; then
 	OS='osx'
