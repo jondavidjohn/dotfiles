@@ -1,16 +1,21 @@
 {
   "options": {
-    "curly": true,
+    "globals": { "ifit": true, "api": true, "google": true },
     "eqeqeq": true,
-    "eqnull": true,
-    "expr": true,
-    "latedef": true,
-    "noarg": true,
-    "node": true,
-    "quotmark": "double",
-    "smarttabs": true,
-    "trailing": true,
+    "indent": 2,
     "undef": true,
-    "unused": true
+    "unused": "vars",
+    "loopfunc": true,
+    "noarg": true,
+    "regexdash": true,
+    "browser": true,
+    "wsh": true,
+    "jquery": true,
+    "trailing": true,
+    "sub": true,
+    "laxcomma": true,
+    "node": true,
+    "newcap": false,
+    "eqnull": true
   }
 }
