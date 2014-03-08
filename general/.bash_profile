@@ -36,10 +36,23 @@ untgz() {
   tar -zxvf $1
 }
 
+src() {
+  if [ "$2" != "" ]; then
+    prj_path=~/Source/`ls -1 ~/Source | grep -i -m 1 "$1"`
+    vim "$prj_path/`ls -1 $prj_path | grep -i -m 1 "$2"`" -c "Git pull"
+  else
+    cd ~/Source
+    if [ "$1" != "" ]; then
+      cd `ls -1 | grep -i -m 1 "$1"`
+    fi
+  fi
+}
+
 # Load RVM into a shell session *as a function*
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # more PATH adjustments
+export PATH=$PATH:$HOME/bin # user bin directory
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH=$PATH:/usr/local/share/python # Python installed scripts
 
@@ -151,3 +164,4 @@ prompt() {
 PROMPT_COMMAND=prompt
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+export NODE_PATH=/Users/jonathan.johnson/Source/ifit/ifit

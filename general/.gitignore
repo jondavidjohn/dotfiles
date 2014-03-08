@@ -70,3 +70,9 @@ pip-log.txt
 *.swp
 *.swo
 
+## SublimeText Project Files
+*sublime-*
+
+## SublimeText Project Files
+*.sublime-*
+
