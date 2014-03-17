@@ -164,4 +164,3 @@ prompt() {
 PROMPT_COMMAND=prompt
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
-export NODE_PATH=/Users/jonathan.johnson/Source/ifit/ifit
