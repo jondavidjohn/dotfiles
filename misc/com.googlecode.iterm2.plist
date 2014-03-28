@@ -662,7 +662,7 @@
 		</dict>
 	</dict>
 	<key>Default Bookmark Guid</key>
-	<string>2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</string>
+	<string>98856E5F-0E47-4DF6-93FA-B2115EC0C335</string>
 	<key>DimBackgroundWindows</key>
 	<false/>
 	<key>DimInactiveSplitPanes</key>
@@ -741,9 +741,11 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>267 162 924 485 0 0 2560 1418 </string>
+	<string>266 162 924 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 2556 364 0 0 2560 1418 </string>
+	<string>0 0 2556 444 0 0 2560 1418 </string>
+	<key>NeverWarnAboutShortLivedSessions_2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</key>
+	<true/>
 	<key>NeverWarnAboutShortLivedSessions_98856E5F-0E47-4DF6-93FA-B2115EC0C335</key>
 	<true/>
 	<key>New Bookmarks</key>
@@ -2071,7 +2073,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-03-07T06:31:58Z</date>
+	<date>2014-03-28T16:18:47Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2126,6 +2128,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>1.0.0.20130622</string>
+	<string>1.0.0.20140112</string>
 </dict>
 </plist>

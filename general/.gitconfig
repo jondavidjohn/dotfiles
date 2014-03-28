@@ -1,6 +1,6 @@
 [user]
 	name = Jonathan Johnson
-	email = jon@crowdfavorite.com
+	email = me@jondavidjohn.com
 [push]
 	default = current
 [branch]
@@ -39,11 +39,17 @@
 	status = auto
 	branch = auto
 [diff]
-	tool = meld
+	tool = sourcetree
 [merge]
-	tool = meld
+	tool = kdiff3
 	conflictstyle = diff3
 [rerere]
 	enabled = true
 [github]
 	user = jondavidjohn
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true

@@ -164,3 +164,5 @@ prompt() {
 PROMPT_COMMAND=prompt
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
+
+ulimit -n 10000
