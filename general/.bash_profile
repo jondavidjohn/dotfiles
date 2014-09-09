@@ -9,12 +9,9 @@ WHITE="\e[0;37m\]"
 BWHITE="\e[1;37m\]"
 COLOREND="\[\e[00m\]"
 
-alias runsmtp='python -m smtpd -n -c DebuggingServer localhost:1025'
-alias runhttp='python -m SimpleHTTPServer'
+alias catch='python -m smtpd -n -c DebuggingServer localhost:1025'
+alias serve='open http://localhost:8000; python -m SimpleHTTPServer;'
 alias tree='tree --dirsfirst -C'
-alias tr='tree -L 1'
-alias tr2='tree -L 2'
-alias tr3='tree -L 3'
 alias ls='ls -G'
 alias ll='ls -lh'
 alias l='ll'

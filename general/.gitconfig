@@ -7,12 +7,17 @@
 	autosetupmerge = true
 	autosetuprebase = always
 [alias]
-	hub = "!f(){ hub \"$@\"; }; f"
+	fork = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
+	branch-lg =  "!git lg `git fork`.."
+#	branch-hint = "!git diff-tree --no-commit-id --name-only -r `git fork`..HEAD | sed -n '/\.json$/p' | tr '\n' '\0' | jshint"
+	open = "!$EDITOR $(git status -sb | tail +2 | cut -d' ' -f3)"
+	hub = "!hub \"$@\""
 	tpush = push --follow-tags
 	pullmerge = pull --no-rebase
 	st = status -sb
 	d = diff
 	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+	bdiff = "!git diff `git fork`.."
 	ci = commit -v
 	cia = commit -v -a
 	co = checkout
@@ -39,9 +44,9 @@
 	status = auto
 	branch = auto
 [diff]
-	tool = sourcetree
+	tool = diffmerge
 [merge]
-	tool = kdiff3
+	tool = diffmerge
 	conflictstyle = diff3
 [rerere]
 	enabled = true
@@ -53,3 +58,10 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[mergetool "diffmerge"]
+	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
+	trustExitCode = true
+[mergetool]
+	keepBackup = false
+[difftool "diffmerge"]
+	cmd = diffmerge $LOCAL $REMOTE
