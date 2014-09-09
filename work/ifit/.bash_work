@@ -1,2 +1,4 @@
+alias ifit='cd ~/Source/ifit/ifit'
+
 export NODE_PATH=/Users/jonathan.johnson/Source/ifit/ifit
 # vim: set filetype=sh:
