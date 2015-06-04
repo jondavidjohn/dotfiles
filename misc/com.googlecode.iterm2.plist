@@ -741,11 +741,13 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame Preferences</key>
-	<string>58 56 924 485 0 0 1280 778 </string>
+	<string>267 183 924 485 0 0 2560 1440 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>1086 968 384 129 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 1276 778 0 0 2560 1418 </string>
+	<string>0 0 598 399 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>-22 10 1298 768 0 0 2560 1418 </string>
+	<string>394 679 730 706 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_98856E5F-0E47-4DF6-93FA-B2115EC0C335</key>
@@ -2077,7 +2079,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-09-09T03:08:22Z</date>
+	<date>2014-10-27T18:46:23Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -2120,7 +2122,7 @@
 	<key>WebKitDefaultFontSize</key>
 	<integer>11</integer>
 	<key>WebKitStandardFont</key>
-	<string>Lucida Grande</string>
+	<string>.Helvetica Neue DeskInterface</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>

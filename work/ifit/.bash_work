@@ -1,4 +1,8 @@
 alias ifit='cd ~/Source/ifit/ifit'
 
+viperssh() {
+  ssh ubuntu@$1 -i ~/.ssh/ifit-dev.pem
+}
+
 export NODE_PATH=/Users/jonathan.johnson/Source/ifit/ifit
 # vim: set filetype=sh:

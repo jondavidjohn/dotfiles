@@ -1,3 +1,4 @@
+--ignore-dir=_site
 --smart-case
 --type-set
 coffee=.coffee
