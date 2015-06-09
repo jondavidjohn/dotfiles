@@ -1,22 +1,39 @@
 #!/bin/bash
 
-# Per OS deps
-## OSX
-### Command Line build tools
-### homebrew
+# OSX Command Line Tools
+xcode-select --install
 
-# General Deps (Maybe?)
-## tree
-## node
-## npm
-## vim
-## python
-## rvm (and latest ruby)
-## git
-## svn
-## ack
-## jshint
-## bash_completion
+# Homebrew Install
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install \
+ack \
+automake \
+bash \
+bash-completion \
+cmake \
+git \
+libksba \
+libtool \
+libyaml \
+imagemagick \
+icu4c \
+memcached \
+mysql \
+nvm \
+phantomjs \
+rbenv \
+rbenv-gem-rehash \
+redis \
+ruby-build \
+tree \
+wget \
+vim
+
+# Auto start services on login
+ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 
 GREEN="\033[32m"
 YELLOW="\033[33m"
@@ -25,7 +42,7 @@ RED="\033[31m"
 ENDCOLOR="\033[0m"
 
 OS="unkown"
-WORK="ifit"
+WORK="treehouse"
 
 if [[ `uname` == 'Darwin' ]]; then
 	OS='osx'
@@ -63,15 +80,6 @@ while read location; do
 	ln -nsf "$location" "$HOME/$name"
 
 done < <(find "$HOME/.dotfiles/os/$OS" -depth 1)
-
-# Link up ST3 config
-if [ $OS == 'osx' ]; then
-	echo -e "${YELLOW}  Linking ST3 Config${ENDCOLOR}"
-	if [ -d ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User ]; then
-		rm -rf ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-	fi
-	ln -nsf "$HOME/.subl" ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User
-fi
 
 if [[ $* == *--work* ]]; then
 	echo -e "${YELLOW}  Linking $WORK files...${ENDCOLOR}"

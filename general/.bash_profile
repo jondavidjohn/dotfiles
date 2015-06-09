@@ -45,13 +45,16 @@ src() {
   fi
 }
 
-# Load RVM into a shell session *as a function*
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/bin # user bin directory
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=$PATH:/usr/local/share/python # Python installed scripts
+
+eval "$(rbenv init -)"
 
 # load in moar configs
 [[ -e "$HOME/.bash_os" ]] && source "$HOME/.bash_os"
@@ -155,11 +158,9 @@ prompt() {
     exit_status="${RED}▸${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)$(parse_node_version)$exit_status"
+  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${BLUE}($(rbenv version-name))${COLOREND} $exit_status"
 }
 
 PROMPT_COMMAND=prompt
-
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh # This loads NVM
 
 ulimit -n 10000
