@@ -1511,11 +1511,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>769 110 445 103 0 0 1280 800 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>350 197 924 485 0 0 1280 800 </string>
+	<string>4168 583 924 485 2560 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>8 31 2546 1386 0 0 2560 1417 </string>
+	<string>3006 452 1425 843 2560 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>3840 85 1274 1326 2560 0 2560 1417 </string>
+	<string>1587 -670 921 577 1326 -800 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>419 531 1410 886 0 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</key>
@@ -1642,11 +1642,11 @@
 			<key>Ansi 6 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.52502274513244629</real>
+				<real>0.52549022436141968</real>
 				<key>Green Component</key>
-				<real>0.57082360982894897</real>
+				<real>0.56862747669219971</real>
 				<key>Red Component</key>
-				<real>0.14679534733295441</real>
+				<real>0.14901961386203766</real>
 			</dict>
 			<key>Ansi 7 Color</key>
 			<dict>
@@ -1997,20 +1997,20 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.56363654136657715</real>
+				<real>0.19056794047355652</real>
 				<key>Green Component</key>
-				<real>0.56485837697982788</real>
+				<real>0.14811280369758606</real>
 				<key>Red Component</key>
-				<real>0.50599193572998047</real>
+				<real>0.0</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.19370138645172119</real>
+				<real>0.52549022436141968</real>
 				<key>Green Component</key>
-				<real>0.15575926005840302</real>
+				<real>0.56862747669219971</real>
 				<key>Red Component</key>
-				<real>0.0</real>
+				<real>0.14901961386203766</real>
 			</dict>
 			<key>Semantic History</key>
 			<dict>
@@ -2784,7 +2784,7 @@
 	<key>NoSyncTimeOfLastPromo</key>
 	<real>456211216.14913601</real>
 	<key>NoSyncTimeOfLastPromoDownload</key>
-	<real>456211216.14954698</real>
+	<real>460918745.77860898</real>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -2851,7 +2851,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2015-06-17T05:19:49Z</date>
+	<date>2015-08-10T16:59:04Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>

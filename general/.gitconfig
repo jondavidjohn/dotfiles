@@ -7,22 +7,21 @@
 	autosetupmerge = true
 	autosetuprebase = always
 [alias]
+	root = rev-parse --show-toplevel
 	fork = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
 	branch-lg =  "!git lg `git fork`.."
-#	branch-hint = "!git diff-tree --no-commit-id --name-only -r `git fork`..HEAD | sed -n '/\.json$/p' | tr '\n' '\0' | jshint"
 	open = "!$EDITOR $(git status -sb | tail +2 | cut -d' ' -f3)"
-	hub = "!hub \"$@\""
-	tpush = push --follow-tags
+	pusht = push --follow-tags
 	pullmerge = pull --no-rebase
-	st = status -sb
+	st = status
 	d = diff
 	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
 	bdiff = "!git diff `git fork`.."
+	aa = add -a
 	ci = commit -v
 	cia = commit -v -a
 	co = checkout
 	cp = cherry-pick
-	dci = svn dcommit
 	l = log
 	ll = log -p
 	lm = log master..
@@ -35,7 +34,7 @@
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
 	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
 	check = diff --check
-	hound = !(test -f .hound.yml && rubocop-git --hound --config .hound.yml master HEAD)
+	hound = !(test -f .hound.yml && rubocop-git --hound master HEAD)
 	sourcetree = !(open -a SourceTree $(git rev-parse --show-toplevel || echo "."))
 [core]
 	excludesfile = ~/.gitignore
