@@ -76,3 +76,4 @@ pip-log.txt
 ## SublimeText Project Files
 *.sublime-*
 
+.lvimrc

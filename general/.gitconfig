@@ -14,10 +14,11 @@
 	pusht = push --follow-tags
 	pullmerge = pull --no-rebase
 	st = status
-	d = diff
-	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-	bdiff = "!git diff `git fork`.."
-	aa = add -a
+  d = diff
+  dc = diff --cached
+  dw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  db = "!git diff `git fork`.."
+	aa = add --all
 	ci = commit -v
 	cia = commit -v -a
 	co = checkout
