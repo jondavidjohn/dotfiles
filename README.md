@@ -1,4 +1,3 @@
 # My Dotfiles
 
-    ./install [--work]
-
+    ./install
