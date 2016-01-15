@@ -1,40 +1,16 @@
 #!/bin/bash
 
+sudo echo "" # force password entry early
+
 # OSX Command Line Tools
 xcode-select --install
 
 # Homebrew Install
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install \
-ack \
-automake \
-bash \
-bash-completion \
-cmake \
-git \
-httpie \
-libksba \
-libtool \
-libyaml \
-imagemagick \
-icu4c \
-memcached \
-mysql \
-nvm \
-phantomjs \
-rbenv \
-rbenv-gem-rehash \
-redis \
-ruby-build \
-tree \
-wget \
-vim
-
-# Auto start services on login
-ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
-ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
-ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
+# Homebrew Bundle Install
+brew tap Homebrew/bundle
+brew bundle
 
 GREEN="\033[32m"
 YELLOW="\033[33m"
@@ -42,61 +18,18 @@ BLUE="\033[34m"
 RED="\033[31m"
 ENDCOLOR="\033[0m"
 
-OS="unkown"
-WORK="treehouse"
-
-if [[ `uname` == 'Darwin' ]]; then
-	OS='osx'
-elif type apt-get &> /dev/null; then
-	OS='debian'
-elif type yum &> /dev/null; then
-	OS='rhel'
-fi
-
-echo -e "${YELLOW}  Linking general files...${ENDCOLOR}"
+echo -e "${YELLOW}  H4cking the plan3t...${ENDCOLOR}"
 while read location; do
 
-	name=$(basename "$location")
+  name=$(basename "$location")
 
-	if [ -d "$HOME/$name" ]; then
-		rm -rf "$HOME/$name"
-	fi
+  if [ -d "$HOME/$name" ]; then
+    rm -rf "$HOME/$name"
+  fi
 
+  echo -e "${BLUE}    $name${ENDCOLOR}"
+  ln -nsf "$location" "$HOME/$name"
 
-	echo -e "${BLUE}    $name${ENDCOLOR}"
-	ln -nsf "$location" "$HOME/$name"
-
-done < <(find "$HOME/.dotfiles/general" -depth 1)
-
-echo -e "${YELLOW}  Linking $OS files...${ENDCOLOR}"
-while read location; do
-
-	name=$(basename "$location")
-
-	if [ -d "$HOME/$name" ]; then
-		rm -rf "$HOME/$name"
-	fi
-
-	echo -e "${BLUE}    $name${ENDCOLOR}"
-	ln -nsf "$location" "$HOME/$name"
-
-done < <(find "$HOME/.dotfiles/os/$OS" -depth 1)
-
-if [[ $* == *--work* ]]; then
-	echo -e "${YELLOW}  Linking $WORK files...${ENDCOLOR}"
-	while read location; do
-
-		name=$(basename "$location")
-
-		if [ -d "$HOME/$name" ]; then
-			rm -rf "$HOME/$name"
-		fi
-
-		echo -e "${BLUE}    $name${ENDCOLOR}"
-		ln -nsf "$location" "$HOME/$name"
-
-	done < <(find "$HOME/.dotfiles/work/$WORK" -depth 1)
-fi
-
+done < <(find "$HOME/.dotfiles/src" -depth 1)
 
 source ~/.bash_profile

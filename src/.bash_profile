@@ -1,4 +1,5 @@
 export EDITOR=vim
+ulimit -n 10000
 
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[0;34m\]"
@@ -19,12 +20,10 @@ alias lla='ll -A'
 alias la='lla'
 alias vi='vim'
 alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
-alias sub='subl'
-
 alias ag="ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal"
 
 ..() {
-  for i in $(seq $1); do cd ..; done;
+  for i in $(seq ${1:-1}); do cd ..; done;
 }
 
 tgz() {
@@ -58,8 +57,27 @@ export PATH=$PATH:/usr/local/share/python # Python installed scripts
 
 eval "$(rbenv init -)"
 
-# load in moar configs
-[[ -e "$HOME/.bash_os" ]] && source "$HOME/.bash_os"
+# homebrew path adjustments
+export PATH="$PATH:/usr/local/share/npm/bin" Add NPM to PATH
+export PATH="$PATH:/usr/local/sbin"
+
+#BASH Completion - Homebrew
+if [[ -z "$BASH_COMPLETION" ]]; then
+	export BASH_COMPLETION=/usr/local/etc/bash_completion
+fi
+
+if [[ -z "$BASH_COMPLETION_DIR" ]]; then
+	export BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
+fi
+
+if [[ -z "$BASH_COMPLETION_COMPAT_DIR" ]]; then
+	export BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+fi
+
+if [ -f $BASH_COMPLETION ]; then
+. $BASH_COMPLETION
+fi
+
 [[ -e "$HOME/.bash_work" ]] && source "$HOME/.bash_work"
 
 # Responsive Prompt
@@ -160,9 +178,7 @@ prompt() {
     exit_status="${RED}▸${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${BLUE}($(rbenv version-name))${COLOREND} $exit_status"
+  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND} $exit_status"
 }
 
 PROMPT_COMMAND=prompt
-
-ulimit -n 10000
