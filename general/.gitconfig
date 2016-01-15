@@ -29,14 +29,17 @@
 	llm = log -p master..
 	b = branch
 	subup = !(git submodule sync && git submodule update --init --recursive)
-	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+	lg = log --graph --first-parent --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+	ugh = !git commit --no-edit --amend
 	ready = rebase -i @{u}
+	unstage = reset HEAD .
 	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
 	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
 	check = diff --check
 	hound = !(test -f .hound.yml && rubocop-git --hound master HEAD)
 	sourcetree = !(open -a SourceTree $(git rev-parse --show-toplevel || echo "."))
+	catchup  = !(git co master && git pull && git co - && git merge -)
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
@@ -50,7 +53,7 @@
 	tool = diffmerge
 	conflictstyle = diff3
 [rerere]
-	enabled = true
+	enabled = false
 [github]
 	user = jondavidjohn
 [difftool "sourcetree"]

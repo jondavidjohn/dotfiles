@@ -1,8 +1,0 @@
---ignore-dir=_site
---ignore-dir=log
---ignore-dir=vendor
---ignore-dir=tmp
---smart-case
---literal
---type-set
-coffee=.coffee

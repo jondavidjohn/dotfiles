@@ -21,6 +21,8 @@ alias vi='vim'
 alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
 alias sub='subl'
 
+alias ag="ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal"
+
 ..() {
   for i in $(seq $1); do cd ..; done;
 }
