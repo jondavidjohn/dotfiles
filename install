@@ -1,24 +1,29 @@
 #!/bin/bash
 
-sudo echo "" # force password entry early
-
-# OSX Command Line Tools
-xcode-select --install
-
-# Homebrew Install
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-# Homebrew Bundle Install
-brew tap Homebrew/bundle
-brew bundle
-
 GREEN="\033[32m"
 YELLOW="\033[33m"
 BLUE="\033[34m"
 RED="\033[31m"
 ENDCOLOR="\033[0m"
 
-echo -e "${YELLOW}  H4cking the plan3t...${ENDCOLOR}"
+sudo echo "" # force password entry early
+
+# OSX Command Line Tools
+xcode-select --install
+
+# Homebrew Install
+echo -e "${YELLOW}Installing Homebrew...${ENDCOLOR}"
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+echo ""
+
+echo -e "${YELLOW}Homebrew Bundle...${ENDCOLOR}"
+# Homebrew Bundle Install
+brew tap Homebrew/bundle
+brew bundle
+echo ""
+
+echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
+current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 while read location; do
 
   name=$(basename "$location")
@@ -27,9 +32,17 @@ while read location; do
     rm -rf "$HOME/$name"
   fi
 
-  echo -e "${BLUE}    $name${ENDCOLOR}"
   ln -nsf "$location" "$HOME/$name"
+  echo -e "  Linked ${BLUE}$name${ENDCOLOR}"
 
-done < <(find "$HOME/.dotfiles/src" -depth 1)
+done < <(find "$current_directory/home" -depth 1)
+echo ""
+
+echo -e "${YELLOW}Karabiner stuff...${ENDCOLOR}"
+ln -nsf "$current_directory/misc/karabiner.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
+echo -e "  Linked ${BLUE}private.xml${ENDCOLOR}"
+ln -nsf "$current_directory/misc/orgs.pqrs.Karabiner.plist" "$HOME/Library/Preferences/org.pqrs.Karabiner.plist"
+echo -e "  Linked ${BLUE}plist${ENDCOLOR}"
+echo ""
 
 source ~/.bash_profile

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>VIM FN+Arrow Movement</name>
+    <identifier>private.fn_vim_arrows</identifier>
+    <autogen>__KeyToKey__ KeyCode::H, ModifierFlag::FN, KeyCode::CURSOR_LEFT</autogen>
+    <autogen>__KeyToKey__ KeyCode::J, ModifierFlag::FN, KeyCode::CURSOR_DOWN</autogen>
+    <autogen>__KeyToKey__ KeyCode::K, ModifierFlag::FN, KeyCode::CURSOR_UP</autogen>
+    <autogen>__KeyToKey__ KeyCode::L, ModifierFlag::FN, KeyCode::CURSOR_RIGHT</autogen>
+  </item>
+  <item>
+    <name>Tilde to Escape, FN+Tilde to Tilde</name>
+    <identifier>priate.tilde_esc</identifier>
+    <autogen>__KeyToKey__ KeyCode::BACKQUOTE, ModifierFlag::FN, KeyCode::BACKQUOTE</autogen>
+    <autogen>__KeyToKey__ KeyCode::BACKQUOTE, KeyCode::ESCAPE</autogen>
+  </item>
+</root>

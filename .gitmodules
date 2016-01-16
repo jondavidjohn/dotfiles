@@ -1,3 +1,3 @@
 [submodule "general/.vim"]
-  path = general/.vim
+  path = home/.vim
   url = git@github.com:jondavidjohn/vimconf.git
