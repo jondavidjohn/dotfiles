@@ -2042,15 +2042,15 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>799 176 445 77 0 0 1280 777 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>269 293 606 456 0 0 1280 777 </string>
+	<string>1236 958 606 456 0 0 2560 1417 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
-	<string>332 288 620 392 0 0 1280 777 </string>
+	<string>970 768 620 392 0 0 2560 1417 </string>
 	<key>NSWindow Frame com.apple.typography_panel_Hack-Regular</key>
 	<string>344 517 260 96 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 2 1276 756 0 0 1280 777 </string>
+	<string>0 634 1410 758 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>4 -19 1276 777 0 0 1280 777 </string>
+	<string>1047 247 1410 758 0 0 2560 1417 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>2961 368 1425 843 2560 0 2560 1417 </string>
 	<key>NeverWarnAboutShortLivedSessions_2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</key>
@@ -3439,6 +3439,8 @@
 	<false/>
 	<key>PasteFromClipboard</key>
 	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -3495,7 +3497,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2016-06-17T01:39:39Z</date>
+	<date>2016-10-12T15:48:51Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>Show Toolbelt</key>
@@ -3550,6 +3552,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.2</string>
+	<string>3.0.10</string>
 </dict>
 </plist>
