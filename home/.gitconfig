@@ -15,9 +15,9 @@
 	pullmerge = pull --no-rebase
 	st = status
   d = diff
-  dc = diff --cached
-  dw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  db = "!git diff `git fork`.."
+  diffc = diff --cached
+  diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+  diffb = "!git diff `git fork`.."
 	aa = add --all
 	ci = commit -v
 	cia = commit -v -a

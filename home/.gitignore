@@ -1,4 +1,4 @@
-# Failed patches
+ # Failed patches
 *.rej
 .*.rej
 
@@ -69,6 +69,7 @@ pip-log.txt
 ## Vim files
 *.swp
 *.swo
+tags
 
 ## SublimeText Project Files
 *sublime-*
@@ -77,3 +78,6 @@ pip-log.txt
 *.sublime-*
 
 .lvimrc
+
+.agignore
+jon-scripts/*

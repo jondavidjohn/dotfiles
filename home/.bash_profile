@@ -54,6 +54,7 @@ source $(brew --prefix nvm)/nvm.sh
 export PATH=$PATH:$HOME/bin # user bin directory
 export PATH="$HOME/.rbenv/bin:$PATH"
 export PATH=$PATH:/usr/local/share/python # Python installed scripts
+export PATH=$PATH:$HOME/.composer/vendor/bin # Composer bins
 
 eval "$(rbenv init -)"
 
@@ -78,7 +79,7 @@ if [ -f $BASH_COMPLETION ]; then
 . $BASH_COMPLETION
 fi
 
-[[ -e "$HOME/.bash_work" ]] && source "$HOME/.bash_work"
+export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # Responsive Prompt
 parse_node_version() {
@@ -178,7 +179,7 @@ prompt() {
     exit_status="${RED}▸${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND} $exit_status"
+  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$exit_status"
 }
 
 PROMPT_COMMAND=prompt
