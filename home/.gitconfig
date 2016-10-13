@@ -1,67 +1,57 @@
 [user]
-	name = Jonathan Johnson
 	email = me@jondavidjohn.com
+	name = Jonathan Johnson
 [push]
 	default = current
 [branch]
 	autosetupmerge = true
 	autosetuprebase = always
 [alias]
-	root = rev-parse --show-toplevel
-	fork = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-master}") <(git rev-list --first-parent "${2:-HEAD}") | head -1' -
-	branch-lg =  "!git lg `git fork`.."
-	open = "!$EDITOR $(git status -sb | tail +2 | cut -d' ' -f3)"
-	pusht = push --follow-tags
-	pullmerge = pull --no-rebase
-	st = status
-  d = diff
-  diffc = diff --cached
-  diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-  diffb = "!git diff `git fork`.."
 	aa = add --all
+	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
+	b = branch
+	catchup  = !(git co master && git pull && git co - && git merge -)
+	check = diff --check
 	ci = commit -v
 	cia = commit -v -a
 	co = checkout
 	cp = cherry-pick
-	l = log
-	ll = log -p
-	lm = log master..
-	llm = log -p master..
-	b = branch
-	subup = !(git submodule sync && git submodule update --init --recursive)
-	lg = log --graph --first-parent --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
-	ugh = !git commit --no-edit --amend
-	ready = rebase -i @{u}
-	unstage = reset HEAD .
+	d = diff
+	diffb = "!git diff `git fork`.."
+	diffc = diff --cached
+	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
+	fork = "!f() { parent=${1-master}; git merge-base HEAD ${parent}; }; f"
 	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
+	l = log
+	lg = log --graph --first-parent --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
+	lgb =  "!git lg `git fork`.."
+	ll = log -p
+	llm = log -p master..
+	lm = log master..
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
-	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
-	check = diff --check
-	hound = !(test -f .hound.yml && rubocop-git --hound master HEAD)
-	sourcetree = !(open -a SourceTree $(git rev-parse --show-toplevel || echo "."))
-	catchup  = !(git co master && git pull && git co - && git merge -)
+	pullmerge = pull --no-rebase
+	pusht = push --follow-tags
+	ready = "!f() { target=$(git rev-parse @{u} 2> /dev/null); target=${target:-master}; git rebase -i ${target}; }; f"
+	st = status
+	subup = !(git submodule sync && git submodule update --init --recursive)
+	typo = !git commit --no-edit --amend
+	unstage = reset HEAD .
 [core]
-	excludesfile = ~/.gitignore
 	editor = vim
+	excludesfile = ~/.gitignore
 [color]
+	branch = auto
 	diff = auto
 	status = auto
-	branch = auto
 [diff]
 	tool = diffmerge
 [merge]
-	tool = diffmerge
 	conflictstyle = diff3
+	tool = diffmerge
 [rerere]
 	enabled = false
 [github]
 	user = jondavidjohn
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
 [mergetool "diffmerge"]
 	cmd = diffmerge --merge\n--result=$MERGED $LOCAL $BASE $REMOTE
 	trustExitCode = true
