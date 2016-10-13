@@ -69,7 +69,6 @@ pip-log.txt
 ## Vim files
 *.swp
 *.swo
-tags
 
 ## SublimeText Project Files
 *sublime-*
