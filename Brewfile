@@ -5,6 +5,7 @@ tap 'homebrew/versions'
 
 brew 'bash'
 brew 'bash-completion'
+brew 'ctags'
 brew 'exif'
 brew 'git'
 brew 'homebrew/php/php56'

@@ -16,6 +16,7 @@
 	cia = commit -v -a
 	co = checkout
 	cp = cherry-pick
+	ctags = !.git/hooks/ctags
 	d = diff
 	diffb = "!git diff `git fork`.."
 	diffc = diff --cached
@@ -59,3 +60,5 @@
 	keepBackup = false
 [difftool "diffmerge"]
 	cmd = diffmerge $LOCAL $REMOTE
+[init]
+	templatedir = ~/.git_template
