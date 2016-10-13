@@ -108,7 +108,7 @@ parse_git_branch() {
     if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working tree clean" ]]; then
       echo "${GREEN}$branch${COLOREND} "
     else
-      echo "${RED}$branch${COLROEND} "
+      echo "${RED}$branch${COLOREND} "
     fi
   fi
 }
