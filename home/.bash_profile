@@ -52,7 +52,7 @@ source $(brew --prefix nvm)/nvm.sh
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/bin # user bin directory
-export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH=$PATH:$HOME/.rbenv/bin # rbenv bin
 export PATH=$PATH:/usr/local/share/python # Python installed scripts
 export PATH=$PATH:$HOME/.composer/vendor/bin # Composer bins
 
@@ -183,3 +183,5 @@ prompt() {
 }
 
 PROMPT_COMMAND=prompt
+
+source $HOME/.bash_secrets

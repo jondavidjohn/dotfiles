@@ -8,6 +8,12 @@ ENDCOLOR="\033[0m"
 
 sudo echo "" # force password entry early
 
+confirm() {
+  read -n 1 -p $"$1 [y|n] " confirm
+  echo ''
+  [[ $confirm =~ ^(y|Y)$ ]]
+}
+
 # OSX Command Line Tools
 if ! xcode-select -p &> /dev/null; then
   xcode-select --install
@@ -21,11 +27,13 @@ if ! command -v brew &> /dev/null; then
 fi
 
 # Homebrew Bundle Install
-if [ $1 != "--skip-brew-bundle" ]; then
+if confirm "Install Homebrew Bundle?"; then
   echo -e "${YELLOW}Homebrew Bundle...${ENDCOLOR}"
   brew tap Homebrew/bundle && brew bundle
   echo ""
 fi
+
+echo ''
 
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
 current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
