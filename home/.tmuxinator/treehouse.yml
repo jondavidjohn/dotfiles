@@ -1,13 +1,14 @@
 name: treehouse
 root: ~/Source/treehouse/treehouse
-pre: git pull && vagrant up && sleep 1
+pre: git pull && vagrant up
 windows:
   - workspace:
       layout: main-vertical
       panes:
         - editor: vim -c "CtrlP"
-        - specs: vagrant ssh
+        - specs: sleep 1 && vagrant ssh
         - server:
           - vagrant ssh
+          - sudo kill $(cat /treehouse/tmp/pids/server.pid)
           - bin/rails server -b 0.0.0.0 -p 3000
   - shell: git pull

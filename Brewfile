@@ -2,6 +2,7 @@ tap 'caskroom/cask'
 tap 'homebrew/dupes'
 tap 'homebrew/php'
 tap 'homebrew/versions'
+tap 'homebrew/services'
 
 brew 'bash'
 brew 'bash-completion'

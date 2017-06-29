@@ -21,6 +21,7 @@ alias la='lla'
 alias vi='vim'
 alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
 alias ag="ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal"
+alias pubkey="cat ~/.ssh/id_rsa.pub"
 
 ..() {
   for i in $(seq ${1:-1}); do cd ..; done;
@@ -46,9 +47,8 @@ src() {
   fi
 }
 
-# NVM
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/bin # user bin directory
