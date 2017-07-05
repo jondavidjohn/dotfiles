@@ -13,6 +13,14 @@ if ! xcode-select -p &> /dev/null; then
   xcode-select --install
 fi
 
+if [ ! -e "$HOME/.dotfiles" ]; then
+  echo -e "${YELLOW}Cloning the dotfiles repo...${ENDCOLOR}"
+  git clone --recursive https://github.com/jondavidjohn/dotfiles.git $HOME/.dotfiles
+  echo ""
+fi
+
+cd ~/.dotfiles
+
 # Homebrew Install
 if ! command -v brew &> /dev/null; then
   echo -e "${YELLOW}Installing Homebrew...${ENDCOLOR}"
@@ -23,19 +31,11 @@ fi
 # Homebrew Bundle Install
 if [ ! -e "$HOME/.brew-bundle-installed" ]; then
   echo -e "${YELLOW}Homebrew Bundle...${ENDCOLOR}"
-  brew tap Homebrew/bundle && brew bundle
-  touch "$HOME/.brew-bundle-installed"
-  echo ""
-fi
-
-if [ ! -e "$HOME/.dotfiles" ]; then
-  echo -e "${YELLOW}Cloning the dotfiles repo...${ENDCOLOR}"
-  git clone --recursive https://github.com/jondavidjohn/dotfiles.git $HOME/.dotfiles
+  brew tap Homebrew/bundle && brew bundle && touch "$HOME/.brew-bundle-installed"
   echo ""
 fi
 
 echo ''
-cd ~/.dotfiles
 
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
 current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
