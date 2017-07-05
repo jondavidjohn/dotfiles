@@ -8,12 +8,6 @@ ENDCOLOR="\033[0m"
 
 sudo echo "" # force password entry early
 
-confirm() {
-  read -n 1 -p $"$1 [y|n] " confirm
-  echo ''
-  [[ $confirm =~ ^(y|Y)$ ]]
-}
-
 # OSX Command Line Tools
 if ! xcode-select -p &> /dev/null; then
   xcode-select --install
@@ -27,15 +21,16 @@ if ! command -v brew &> /dev/null; then
 fi
 
 # Homebrew Bundle Install
-if confirm "Install Homebrew Bundle?"; then
+if [ ! -e "$HOME/.brew-bundle-installed" ]; then
   echo -e "${YELLOW}Homebrew Bundle...${ENDCOLOR}"
   brew tap Homebrew/bundle && brew bundle
+  touch "$HOME/.brew-bundle-installed"
   echo ""
 fi
 
-if ! [ -d "~/.dotfiles" ]; then
+if [ ! -e "$HOME/.dotfiles" ]; then
   echo -e "${YELLOW}Cloning the dotfiles repo...${ENDCOLOR}"
-  git clone --recursive https://github.com/jondavidjohn/dotfiles.git ~/.dotfiles
+  git clone --recursive https://github.com/jondavidjohn/dotfiles.git $HOME/.dotfiles
   echo ""
 fi
 
