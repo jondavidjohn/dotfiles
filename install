@@ -33,6 +33,10 @@ if confirm "Install Homebrew Bundle?"; then
   echo ""
 fi
 
+echo -e "${YELLOW}Cloning the dotfiles repo...${ENDCOLOR}"
+cd ~ && git clone --recursive https://github.com/jondavidjohn/dotfiles.git ./.dotfiles
+echo ""
+
 echo ''
 
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
