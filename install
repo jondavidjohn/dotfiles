@@ -60,4 +60,5 @@ ln -nsf "$current_directory/misc/orgs.pqrs.Karabiner.plist" "$HOME/Library/Prefe
 echo -e "  Linked ${BLUE}plist${ENDCOLOR}"
 echo ""
 
-source ~/.bash_profile
+touch $HOME/.bash_secrets
+source $HOME/.bash_profile
