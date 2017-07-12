@@ -1,0 +1,11 @@
+name: mothership
+root: ~/Code/codeship/mothership
+pre: git pull
+windows:
+  - workspace:
+      layout: main-vertical
+      panes:
+        - editor: vim -c "CtrlP"
+        - specs: echo "ALL THE SPECS ALL THE TIME"
+        - server: rm -f tmp/pids/server.pid && docker-compose up
+  - shell:

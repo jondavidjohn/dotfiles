@@ -80,3 +80,5 @@ pip-log.txt
 
 .agignore
 jon-scripts/*
+
+.config/yarn

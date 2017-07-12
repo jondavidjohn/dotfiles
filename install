@@ -38,6 +38,7 @@ fi
 echo ''
 
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
+mkdir -p $HOME/.config/karabiner
 current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 while read location; do
 
@@ -51,13 +52,6 @@ while read location; do
   echo -e "  Linked ${BLUE}$name${ENDCOLOR}"
 
 done < <(find "$current_directory/home" -depth 1)
-echo ""
-
-echo -e "${YELLOW}Karabiner stuff...${ENDCOLOR}"
-ln -nsf "$current_directory/misc/karabiner.xml" "$HOME/Library/Application Support/Karabiner/private.xml"
-echo -e "  Linked ${BLUE}private.xml${ENDCOLOR}"
-ln -nsf "$current_directory/misc/orgs.pqrs.Karabiner.plist" "$HOME/Library/Preferences/org.pqrs.Karabiner.plist"
-echo -e "  Linked ${BLUE}plist${ENDCOLOR}"
 echo ""
 
 touch $HOME/.bash_secrets

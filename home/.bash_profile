@@ -35,12 +35,12 @@ untgz() {
   tar -zxvf $1
 }
 
-src() {
+code() {
   if [ "$2" != "" ]; then
-    prj_path=~/Source/`ls -1 ~/Source | grep -i -m 1 "$1"`
+    prj_path=~/Code/`ls -1 ~/Code | grep -i -m 1 "$1"`
     vim "$prj_path/`ls -1 $prj_path | grep -i -m 1 "$2"`" -c "Git pull"
   else
-    cd ~/Source
+    cd ~/Code
     if [ "$1" != "" ]; then
       cd `ls -1 | grep -i -m 1 "$1"`
     fi
