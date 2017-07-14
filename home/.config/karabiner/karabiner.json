@@ -103,7 +103,7 @@
                         "product_id": 321,
                         "vendor_id": 1241
                     },
-                    "ignore": false
+                    "ignore": true
                 },
                 {
                     "disable_built_in_keyboard_if_exists": false,
@@ -114,6 +114,16 @@
                         "vendor_id": 1452
                     },
                     "ignore": false
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": true,
+                        "product_id": 321,
+                        "vendor_id": 1241
+                    },
+                    "ignore": true
                 }
             ],
             "fn_function_keys": {
