@@ -20,11 +20,16 @@ alias lla='ll -A'
 alias la='lla'
 alias vi='vim'
 alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
-alias ag="ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal"
-alias pubkey="cat ~/.ssh/id_rsa.pub"
+alias ag='ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal'
+alias pubkey='cat ~/.ssh/id_rsa.pub'
+alias mux='tmuxinator'
 
 ..() {
   for i in $(seq ${1:-1}); do cd ..; done;
+}
+
+whoport() {
+  lsof -n -i4TCP:$1
 }
 
 tgz() {

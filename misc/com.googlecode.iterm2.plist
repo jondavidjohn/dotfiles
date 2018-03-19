@@ -18,6 +18,8 @@
 	<integer>0</integer>
 	<key>AppleSmoothFixedFontsSizeThreshold</key>
 	<integer>1</integer>
+	<key>AppleWindowTabbingMode</key>
+	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
 	<key>CheckTestRelease</key>
@@ -1991,6 +1993,8 @@
 	<integer>96</integer>
 	<key>HotkeyCode</key>
 	<integer>50</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>1048840</integer>
 	<key>IRMemory</key>
@@ -2024,7 +2028,7 @@
 	gAKACoAN0xAJChEVGVdOUy5rZXlzoxITFIADgASABaMWFxiABoAHgAiACVpJZGVudGlm
 	aWVyVVdpZHRoVkhpZGRlblEwI0BowAAAAAAACNIhIiMkWiRjbGFzc25hbWVYJGNsYXNz
 	ZXNcTlNEaWN0aW9uYXJ5oiMlWE5TT2JqZWN00xAJCicrGaMSExSAA4AEgAWjLC0YgAuA
-	DIAIgAlRMSNAdCGdsi0OVtIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
+	DIAIgAlRMSNAdKGdsi0OVtIhIjM0Xk5TTXV0YWJsZUFycmF5ozM1JVdOU0FycmF5XxAP
 	TlNLZXllZEFyY2hpdmVy0Tg5VUFycmF5gAEACAARABoAIwAtADIANwBGAEwAUQBcAGMA
 	ZgBoAGoAbABzAHsAfwCBAIMAhQCJAIsAjQCPAJEAnACiAKkAqwC0ALUAugDFAM4A2wDe
 	AOcA7gDyAPQA9gD4APwA/gEAAQIBBAEGAQ8BFAEjAScBLwFBAUQBSgAAAAAAAAIBAAAA
@@ -2040,10 +2044,14 @@
 	</data>
 	<key>NSTableView Supports v2 KeyBingingTable</key>
 	<true/>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>972 769 620 392 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 240 770 381 0 0 1440 878 </string>
+	<string>228 646 918 452 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>6 107 1410 758 0 0 1440 878 </string>
+	<string>0 0 2042 1234 0 0 2560 1418 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>1150 481 1410 735 0 0 2560 1418 </string>
 	<key>NeverWarnAboutShortLivedSessions_2337C250-3AF0-48F3-BC9A-BC3D7FD3C596</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_98856E5F-0E47-4DF6-93FA-B2115EC0C335</key>
@@ -2734,7 +2742,7 @@
 				</dict>
 			</array>
 			<key>Space</key>
-			<integer>-1</integer>
+			<integer>0</integer>
 			<key>Sync Title</key>
 			<false/>
 			<key>Tags</key>
@@ -3404,6 +3412,8 @@
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
 	<integer>0</integer>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>520967238.77946299</real>
 	<key>OnlyWhenMoreTabs</key>
@@ -3478,7 +3488,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-07-05T17:08:53Z</date>
+	<date>2017-10-20T09:20:49Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SavePasteHistory</key>
@@ -3534,9 +3544,11 @@
 	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
+	<key>findMode_iTerm</key>
+	<integer>0</integer>
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.15</string>
+	<string>3.1.3</string>
 </dict>
 </plist>

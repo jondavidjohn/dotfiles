@@ -1,5 +1,5 @@
-name: mothership
-root: ~/Code/codeship/mothership
+name: packtracker
+root: ~/Code/packtracker/app.packtracker.io
 pre: git pull
 windows:
   - workspace:
@@ -7,5 +7,5 @@ windows:
       panes:
         - editor: vim -c "CtrlP"
         - specs:
-        - server: bin/dev-server
+        - server: bin/rails server
   - shell:

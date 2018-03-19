@@ -82,3 +82,5 @@ pip-log.txt
 jon-scripts/*
 
 .config/yarn
+.config/configstore
+.config/rclone
