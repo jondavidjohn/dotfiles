@@ -1,11 +1,18 @@
 name: mothership
-root: ~/Code/codeship/mothership
-pre: git pull
 windows:
   - workspace:
+      root: ~/Code/codeship/mothership
+      pre_window: nvm use && spring stop
       layout: main-vertical
       panes:
         - editor: vim -c "CtrlP"
         - specs:
-        - server: bin/dev-server
+        - rails: bin/rails s
+        - webpack: bin/webpack-dev-server
+  - services:
+      root: ~/go/src/github.com/codeship
+      layout: vertical
+      panes:
+        - janus: cd janus && git pull && make api
+        - logs: cd logs && git pull && ./etc/mock/start --data ./etc/mock/data --build
   - shell:

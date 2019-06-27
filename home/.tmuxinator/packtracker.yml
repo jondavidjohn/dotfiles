@@ -1,11 +1,22 @@
 name: packtracker
-root: ~/Code/packtracker/app.packtracker.io
-pre: git pull
+root: ~/Code/packtracker/
 windows:
-  - workspace:
+  - rails:
+      root: ~/Code/packtracker/rails
       layout: main-vertical
       panes:
         - editor: vim -c "CtrlP"
         - specs:
-        - server: bin/rails server
+        - server: foreman start
+  - ingest:
+      root: ~/Code/packtracker/ingest
+      layout: main-vertical
+      panes:
+        - editor: vim -c "CtrlP"
+        - specs:
+        - app: ./start.sh
+  - services:
+      root: ~/Code/packtracker/services
+      panes:
+        - services: ./start.sh
   - shell:

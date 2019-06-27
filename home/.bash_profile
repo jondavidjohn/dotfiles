@@ -61,6 +61,12 @@ export PATH=$PATH:$HOME/.rbenv/bin # rbenv bin
 export PATH=$PATH:/usr/local/share/python # Python installed scripts
 export PATH=$PATH:$HOME/.composer/vendor/bin # Composer bins
 
+USER_BASE_PATH=$(python -m site --user-base)
+export PATH=$PATH:$USER_BASE_PATH/bin
+
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+
 eval "$(rbenv init -)"
 
 # homebrew path adjustments
