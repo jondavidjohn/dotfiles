@@ -1,3 +1,4 @@
+export BASH_SILENCE_DEPRECATION_WARNING=1
 export EDITOR=vim
 ulimit -n 10000
 
@@ -194,5 +195,4 @@ prompt() {
 }
 
 PROMPT_COMMAND=prompt
-
 source $HOME/.bash_secrets
