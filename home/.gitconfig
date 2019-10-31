@@ -64,3 +64,5 @@
 	templatedir = ~/.git_template
 [credential]
 	helper = osxkeychain
+[diff "sopsdiffer"]
+	textconv = sops -d
