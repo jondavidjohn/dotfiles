@@ -84,3 +84,4 @@ jon-scripts/*
 .config/yarn
 .config/configstore
 .config/rclone
+.config/karabiner/automatic_backups/

@@ -24,6 +24,7 @@ alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
 alias ag='ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal'
 alias pubkey='cat ~/.ssh/id_rsa.pub'
 alias mux='tmuxinator'
+alias vim='nvim'
 
 ..() {
   for i in $(seq ${1:-1}); do cd ..; done;
@@ -54,7 +55,8 @@ code() {
 }
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/bin # user bin directory
@@ -64,6 +66,9 @@ export PATH=$PATH:$HOME/.composer/vendor/bin # Composer bins
 
 USER_BASE_PATH=$(python -m site --user-base)
 export PATH=$PATH:$USER_BASE_PATH/bin
+
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -196,3 +201,5 @@ prompt() {
 
 PROMPT_COMMAND=prompt
 source $HOME/.bash_secrets
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
