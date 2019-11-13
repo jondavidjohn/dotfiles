@@ -96,6 +96,17 @@ if [ -f $BASH_COMPLETION ]; then
 . $BASH_COMPLETION
 fi
 
+#determines search program for fzf
+if type ag &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='ag -p ~/.gitignore -g ""'
+fi
+
+#refer rg over ag
+if type rg &> /dev/null; then
+    export FZF_DEFAULT_COMMAND='rg --files --hidden'
+fi
+
+
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # Responsive Prompt
