@@ -1,0 +1,15 @@
+name: hashicorp/atlas
+root: ~/Code/hashicorp/atlas
+pre_window: nvm use
+windows:
+  - app:
+      layout: main-vertical
+      panes:
+        - editor: vim -c "FZF"
+        - specs:
+        - ember: cd frontend/atlas && yarn start
+  - services:
+      layout: even-horizontal
+      panes:
+        - console:
+        - stack: syrup stack up

@@ -1,0 +1,14 @@
+name: cardctlg/rails
+root: ~/Code/cardctlg/rails
+pre_window: nvm use && bin/spring stop
+windows:
+  - app:
+      layout: main-vertical
+      panes:
+        - editor: vim -c "FZF"
+        - specs:
+        - server: bundle && yarn && hivemind
+  - services:
+      layout: main-vertical
+      panes:
+        - docker: docker-compose up

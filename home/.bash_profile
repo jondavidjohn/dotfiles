@@ -2,6 +2,8 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 export EDITOR=vim
 ulimit -n 10000
 
+ssh-add
+
 GREEN="\[\e[0;32m\]"
 BLUE="\[\e[0;34m\]"
 RED="\[\e[0;31m\]"
@@ -25,6 +27,35 @@ alias ag='ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-ca
 alias pubkey='cat ~/.ssh/id_rsa.pub'
 alias mux='tmuxinator'
 alias vim='nvim'
+alias be="bundle exec"
+
+# TFE Aliases
+tfe_commands () {
+ # tfe Acceptable Params
+ echo 'console     - To pry-remote or byebug into your atlas docker container'
+ echo 'stop        - Stop containers; not rm from Docker'
+ echo 'down        - Stop containers; rm from Docker -- will not delete, local config persisted'
+ echo 'start       - Start'
+ echo 'restart     - Restart all services*'
+ echo 'reset       - For rerunning migrations or otherwise resetting state locally'
+ echo 'nuke        - Stop containers; delete all, local config not persisted'
+ echo 'debug_logs  - Dumps logs to tmp/local_logs'
+ echo 'logs        - All logs*'
+ echo 'info        - ngrok URL setup'
+ echo 'renew_vault - Renew Vault certs'
+ echo '*Append `[$service_name]` for specific service, e.g.: `tfe logs[atlas]`'
+}
+
+tfe () {
+    bundle exec rake tfe:local:"$@"
+}
+
+# TFE Local (Non-Containerized) Postgres - See Database section below for initial setup
+# password:
+tfe_psql () {
+    echo 'run queries with rails.table_name'
+    psql hashicorp -h localhost -p 25432 -U hashicorp # tablename, hostname, port, user (in this case hashicorp)
+}
 
 ..() {
   for i in $(seq ${1:-1}); do cd ..; done;
@@ -54,6 +85,23 @@ code() {
   fi
 }
 
+# TFE Aliases
+tfe_commands () {
+  echo 'stop        - Stop containers; not rm from Docker'
+  echo 'down        - Stop containers; rm from Docker -- will not delete, local config persisted'
+  echo 'start       - Start'
+  echo 'restart     - Restart all services*'
+  echo 'nuke        - Stop containers; delete all, local config not persisted'
+  echo 'logs        - All logs*'
+  echo 'info        - ngrok URL setup'
+  echo 'renew_vault - Renew Vault certs'
+  echo '*Append `[$service_name]` for specific service, e.g.: `tfe logs[atlas]`'
+}
+
+tfe () {
+  bundle exec rake tfe:local:"$@"
+}
+
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
@@ -70,14 +118,16 @@ export PATH=$PATH:$USER_BASE_PATH/bin
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+export GOROOT_BOOTSTRAP=$GOROOT
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 eval "$(rbenv init -)"
 
 # homebrew path adjustments
-export PATH="$PATH:/usr/local/share/npm/bin" Add NPM to PATH
-export PATH="$PATH:/usr/local/sbin"
+export PATH="/usr/local/share/npm/bin:$PATH" Add NPM to PATH
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/usr/local/bin:$PATH"
 
 #BASH Completion - Homebrew
 if [[ -z "$BASH_COMPLETION" ]]; then
@@ -212,6 +262,8 @@ prompt() {
 
 PROMPT_COMMAND=prompt
 source $HOME/.bash_secrets
+
+eval "$(tfcdev rc)"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 

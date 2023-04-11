@@ -84,4 +84,11 @@ jon-scripts/*
 .config/yarn
 .config/configstore
 .config/rclone
-.config/karabiner/automatic_backups/
+.config/karabiner/automatic_backups
+.config/com.corsair
+.config/exercism
+.config/iterm2
+.config/op
+.config/wireshark
+.config/.tmuxinator/cardctlg/
+.config/.tmuxinator/hashicorp/

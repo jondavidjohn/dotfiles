@@ -37,6 +37,7 @@
 	subup = !(git submodule sync && git submodule update --init --recursive)
 	typo = !git commit --no-edit --amend
 	unstage = reset HEAD .
+# prunemerged = !git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
