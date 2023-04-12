@@ -45,8 +45,9 @@ echo ''
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
 mkdir -p $HOME/.config/karabiner
 current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-while read location; do
 
+find "$current_directory/home" -depth 1 | 
+while read location; do
   name=$(basename "$location")
 
   if [ -d "$HOME/$name" ]; then
@@ -55,8 +56,7 @@ while read location; do
 
   ln -nsf "$location" "$HOME/$name"
   echo -e "  Linked ${BLUE}$name${ENDCOLOR}"
-
-done < <(find "$current_directory/home" -depth 1)
+done
 echo ""
 
 touch $HOME/.bash_secrets
