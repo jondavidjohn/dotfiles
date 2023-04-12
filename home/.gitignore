@@ -92,3 +92,4 @@ jon-scripts/*
 .config/wireshark
 .config/.tmuxinator/cardctlg/
 .config/.tmuxinator/hashicorp/
+.jenv
