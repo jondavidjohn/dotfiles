@@ -37,7 +37,7 @@ if [ ! -e "$HOME/.brew-bundle-installed" ]; then
   echo ""
 fi
 
-jenv add '/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/'
+jenv add '/Library/Java/JavaVirtualMachines/temurin-20.jdk/Contents/Home/'
 
 echo ''
 
