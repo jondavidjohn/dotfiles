@@ -22,7 +22,7 @@ cd ~/.dotfiles
 # Homebrew Install
 if ! command -v brew &> /dev/null; then
   echo -e "${YELLOW}Installing Homebrew...${ENDCOLOR}"
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   echo ""
 fi
 
