@@ -33,6 +33,7 @@ cask 'iterm2'
 cask 'karabiner-elements'
 cask 'licecap'
 cask 'sequel-pro'
+cask 'temurin'
 
 # Managed by IT
 #
