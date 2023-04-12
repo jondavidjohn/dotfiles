@@ -125,9 +125,8 @@ export PATH="$GOPATH/bin:$PATH"
 eval "$(rbenv init -)"
 
 # homebrew path adjustments
-export PATH="/usr/local/share/npm/bin:$PATH" Add NPM to PATH
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_ANALYTICS=1
 
 #BASH Completion - Homebrew
 if [[ -z "$BASH_COMPLETION" ]]; then

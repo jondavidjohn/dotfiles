@@ -23,6 +23,8 @@ cd ~/.dotfiles
 if ! command -v brew &> /dev/null; then
   echo -e "${YELLOW}Installing Homebrew...${ENDCOLOR}"
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  brew analytics off
   echo ""
 fi
 
