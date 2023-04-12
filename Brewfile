@@ -28,10 +28,14 @@ cask 'alfred'
 cask 'caffeine'
 cask 'font-hack'
 cask 'firefox'
-cask 'google-chrome'
 cask 'insomnia'
 cask 'iterm2'
 cask 'karabiner-elements'
 cask 'licecap'
 cask 'sequel-pro'
-cask 'slack'
+
+# Managed by IT
+#
+# cask 'google-chrome'
+# cask 'slack'
+# cask 'zoom'
