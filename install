@@ -4,6 +4,8 @@ BLUE="\033[34m"
 RED="\033[31m"
 ENDCOLOR="\033[0m"
 
+set -e
+
 sudo echo "" # force password entry early
 
 # OSX Command Line Tools
