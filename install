@@ -13,7 +13,7 @@ fi
 
 if [ ! -e "$HOME/.dotfiles" ]; then
   echo -e "${YELLOW}Cloning the dotfiles repo...${ENDCOLOR}"
-  git clone --recursive https://github.com/jondavidjohn/dotfiles.git $HOME/.dotfiles
+  git clone --recurse-submodules -j2 https://github.com/jondavidjohn/dotfiles.git $HOME/.dotfiles
   echo ""
 fi
 
