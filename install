@@ -42,6 +42,10 @@ jenv add '/Library/Java/JavaVirtualMachines/temurin-20.jdk/Contents/Home/'
 
 echo ''
 
+echo -e "${YELLOW}Setting default shell to bash...${ENDCOLOR}"
+echo '/opt/homebrew/bin/bash' | sudo tee -a /etc/shells
+sudo chsh -s '/opt/homebrew/bin/bash'
+
 echo -e "${YELLOW}H4cking the plan3t...${ENDCOLOR}"
 mkdir -p $HOME/.config/karabiner
 current_directory="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"

@@ -13,8 +13,8 @@ WHITE="\e[0;37m\]"
 BWHITE="\e[1;37m\]"
 COLOREND="\[\e[00m\]"
 
-alias catch='python -m smtpd -n -c DebuggingServer localhost:1025'
-alias serve='open http://localhost:8000; python -m SimpleHTTPServer;'
+alias catch='python3 -m smtpd -n -c DebuggingServer localhost:1025'
+alias serve='open http://localhost:8000; python3 SimpleHTTPServer;'
 alias tree='tree --dirsfirst -C'
 alias ls='ls -G'
 alias ll='ls -lh'
@@ -28,34 +28,6 @@ alias pubkey='cat ~/.ssh/id_rsa.pub'
 alias mux='tmuxinator'
 alias vim='nvim'
 alias be="bundle exec"
-
-# TFE Aliases
-tfe_commands () {
- # tfe Acceptable Params
- echo 'console     - To pry-remote or byebug into your atlas docker container'
- echo 'stop        - Stop containers; not rm from Docker'
- echo 'down        - Stop containers; rm from Docker -- will not delete, local config persisted'
- echo 'start       - Start'
- echo 'restart     - Restart all services*'
- echo 'reset       - For rerunning migrations or otherwise resetting state locally'
- echo 'nuke        - Stop containers; delete all, local config not persisted'
- echo 'debug_logs  - Dumps logs to tmp/local_logs'
- echo 'logs        - All logs*'
- echo 'info        - ngrok URL setup'
- echo 'renew_vault - Renew Vault certs'
- echo '*Append `[$service_name]` for specific service, e.g.: `tfe logs[atlas]`'
-}
-
-tfe () {
-    bundle exec rake tfe:local:"$@"
-}
-
-# TFE Local (Non-Containerized) Postgres - See Database section below for initial setup
-# password:
-tfe_psql () {
-    echo 'run queries with rails.table_name'
-    psql hashicorp -h localhost -p 25432 -U hashicorp # tablename, hostname, port, user (in this case hashicorp)
-}
 
 ..() {
   for i in $(seq ${1:-1}); do cd ..; done;
@@ -85,34 +57,21 @@ code() {
   fi
 }
 
-# TFE Aliases
-tfe_commands () {
-  echo 'stop        - Stop containers; not rm from Docker'
-  echo 'down        - Stop containers; rm from Docker -- will not delete, local config persisted'
-  echo 'start       - Start'
-  echo 'restart     - Restart all services*'
-  echo 'nuke        - Stop containers; delete all, local config not persisted'
-  echo 'logs        - All logs*'
-  echo 'info        - ngrok URL setup'
-  echo 'renew_vault - Renew Vault certs'
-  echo '*Append `[$service_name]` for specific service, e.g.: `tfe logs[atlas]`'
-}
+HOMEBREW_ROOT=/opt/homebrew
 
-tfe () {
-  bundle exec rake tfe:local:"$@"
-}
+# homebrew path adjustments
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_NO_ANALYTICS=1
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$HOMEBREW_ROOT/opt/nvm/nvm.sh" ] && . "$HOMEBREW_ROOT/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "$HOMEBREW_ROOT/opt/nvm/etc/bash_completion.d/nvm" ] && . "$HOMEBREW_ROOT/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # more PATH adjustments
 export PATH=$PATH:$HOME/bin # user bin directory
 export PATH=$PATH:$HOME/.rbenv/bin # rbenv bin
-export PATH=$PATH:/usr/local/share/python # Python installed scripts
-export PATH=$PATH:$HOME/.composer/vendor/bin # Composer bins
 
-USER_BASE_PATH=$(python -m site --user-base)
+USER_BASE_PATH=$(python3 -m site --user-base)
 export PATH=$PATH:$USER_BASE_PATH/bin
 
 export PATH="$HOME/.jenv/bin:$PATH"
@@ -124,21 +83,17 @@ export PATH="$GOPATH/bin:$PATH"
 
 eval "$(rbenv init -)"
 
-# homebrew path adjustments
-eval "$(/opt/homebrew/bin/brew shellenv)"
-export HOMEBREW_NO_ANALYTICS=1
-
 #BASH Completion - Homebrew
 if [[ -z "$BASH_COMPLETION" ]]; then
-	export BASH_COMPLETION=/usr/local/etc/bash_completion
+	export BASH_COMPLETION=$HOMEBREW_ROOT/etc/bash_completion
 fi
 
 if [[ -z "$BASH_COMPLETION_DIR" ]]; then
-	export BASH_COMPLETION_DIR=/usr/local/etc/bash_completion.d
+	export BASH_COMPLETION_DIR=$HOMEBREW_ROOT/etc/bash_completion.d
 fi
 
 if [[ -z "$BASH_COMPLETION_COMPAT_DIR" ]]; then
-	export BASH_COMPLETION_COMPAT_DIR=/usr/local/etc/bash_completion.d
+	export BASH_COMPLETION_COMPAT_DIR=$HOMEBREW_ROOT/etc/bash_completion.d
 fi
 
 if [ -f $BASH_COMPLETION ]; then
@@ -155,8 +110,7 @@ if type rg &> /dev/null; then
     export FZF_DEFAULT_COMMAND='rg --files --hidden'
 fi
 
-
-export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_HOME=$HOMEBREW_ROOT/opt/android-sdk
 
 # Responsive Prompt
 parse_node_version() {
@@ -262,8 +216,8 @@ prompt() {
 PROMPT_COMMAND=prompt
 source $HOME/.bash_secrets
 
-eval "$(tfcdev rc)"
-
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 [[ -s "/Users/jon/.gvm/scripts/gvm" ]] && source "/Users/jon/.gvm/scripts/gvm"
+
+eval "$(tfcdev rc)"
