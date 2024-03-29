@@ -221,3 +221,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 [[ -s "/Users/jon/.gvm/scripts/gvm" ]] && source "/Users/jon/.gvm/scripts/gvm"
 
 eval "$(tfcdev rc)"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+
+[[ -s "/Users/jjohnson/.gvm/scripts/gvm" ]] && source "/Users/jjohnson/.gvm/scripts/gvm"

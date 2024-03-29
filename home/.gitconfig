@@ -10,7 +10,7 @@
 	aa = add --all
 	attach = "!f() { remote=${1-origin}; git branch --set-upstream-to=\"${remote}/$(git rev-parse --abbrev-ref HEAD)\"; }; f"
 	b = branch
-	catchup  = !(git co master && git pull && git co - && git merge -)
+	catchup  = !(git co main && git pull && git co - && git merge -)
 	check = diff --check
 	ci = commit -v
 	cia = commit -v -a
@@ -21,23 +21,23 @@
 	diffb = "!git diff `git fork`.."
 	diffc = diff --cached
 	diffw = diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'
-	fork = "!f() { parent=${1-master}; git merge-base HEAD ${parent}; }; f"
+	fork = "!f() { parent=${1-main}; git merge-base HEAD ${parent}; }; f"
 	incoming = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' ..@{u})
 	l = log
 	lg = log --graph --first-parent --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' --abbrev-commit --date=relative
 	lgb =  "!git lg `git fork`.."
 	ll = log -p
-	llm = log -p master..
-	lm = log master..
+	llm = log -p main..
+	lm = log main..
 	outgoing = !(git fetch --quiet && git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cr %C(bold blue)%an%Creset' @{u}..)
 	pullmerge = pull --no-rebase
 	pusht = push --follow-tags
-	ready = "!f() { target=$(git rev-parse @{u} 2> /dev/null); target=${target:-master}; git rebase -i ${target}; }; f"
+	ready = "!f() { target=$(git rev-parse @{u} 2> /dev/null); target=${target:-main}; git rebase -i ${target}; }; f"
 	st = status
 	subup = !(git submodule sync && git submodule update --init --recursive)
 	typo = !git commit --no-edit --amend
 	unstage = reset HEAD .
-# prunemerged = !git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d
+# prunemerged = !git branch --merged | egrep -v "(^\*|main)" | xargs git branch -d
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore
@@ -63,6 +63,7 @@
 	cmd = diffmerge $LOCAL $REMOTE
 [init]
 	templatedir = ~/.git_template
+	defaultBranch = main
 [credential]
 	helper = osxkeychain
 [diff "sopsdiffer"]

@@ -6,8 +6,8 @@ windows:
       layout: main-vertical
       panes:
         - editor: vim -c "FZF"
-        - specs:
-        - ember: cd frontend/atlas && yarn start
+        - specs: bundle
+        - ember: cd frontend/atlas && npx yarn && npx yarn start
   - services:
       layout: even-horizontal
       panes:
