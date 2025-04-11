@@ -1,0 +1,13 @@
+# /Users/jjohnson/.tmuxinator/hashicorp/tfc-agent.yml
+
+name: hashicorp/tfc-agent
+root: ~/Code/hashicorp/tfc-agent
+windows:
+  - editor:
+      panes:
+        - editor: nvim -c "Telescope find_files"
+  - services:
+      layout: tiled
+      panes:
+        - console: git status
+        - agent: make docker && docker run --env-file env.list hashicorp/tfc-agent:latest

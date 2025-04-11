@@ -1,0 +1,4 @@
+theme = "Tomorrow Night"
+font-family = "Hack Nerd Font Mono"
+font-size = 14
+link-url = true

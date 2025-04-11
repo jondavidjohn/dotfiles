@@ -1,5 +1,5 @@
 export BASH_SILENCE_DEPRECATION_WARNING=1
-export EDITOR=vim
+export EDITOR=nvim
 ulimit -n 10000
 
 ssh-add
@@ -26,7 +26,6 @@ alias gtop='cd $(git rev-parse --show-toplevel || echo ".")'
 alias ag='ag --ignore=_site --ignore=log --ignore=vendor --ignore=tmp --smart-case --literal'
 alias pubkey='cat ~/.ssh/id_rsa.pub'
 alias mux='tmuxinator'
-alias vim='nvim'
 alias be="bundle exec"
 
 ..() {
@@ -118,32 +117,6 @@ parse_node_version() {
   echo "${BLUE}($version)${COLOREND} "
 }
 
-parse_git_branch() {
-  if [[ -f "$BASH_COMPLETION_DIR/git-completion.bash" ]]; then
-    branch=`__git_ps1 "%s"`
-  else
-    ref=$(git-symbolic-ref HEAD 2> /dev/null) || return
-    branch="${ref#refs/heads/}"
-  fi
-
-  if [[ `tput cols` -lt 110 ]]; then
-    branch=`echo $branch | sed s/feature/f/1`
-    branch=`echo $branch | sed s/hotfix/h/1`
-    branch=`echo $branch | sed s/release/\r/1`
-
-    branch=`echo $branch | sed s/master/mstr/1`
-    branch=`echo $branch | sed s/develop/dev/1`
-  fi
-
-  if [[ $branch != "" ]]; then
-    if [[ $(git status 2> /dev/null | tail -n1) == "nothing to commit, working tree clean" ]]; then
-      echo "${GREEN}$branch${COLOREND} "
-    else
-      echo "${RED}$branch${COLOREND} "
-    fi
-  fi
-}
-
 working_directory() {
   dir=`pwd`
   in_home=0
@@ -181,25 +154,54 @@ working_directory() {
   echo -e "${YELLOW}$workingdir${COLOREND} "
 }
 
-parse_remote_state() {
-  remote_state=$(git status -sb 2> /dev/null | grep -oh "\[.*\]")
-  if [[ "$remote_state" != "" ]]; then
-    out="${BLUE}[${COLOREND}"
+parse_git_prompt() {
+  out=""
 
-    if [[ "$remote_state" == *ahead* ]] && [[ "$remote_state" == *behind* ]]; then
-      behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
-      ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-      out="$out${RED}$behind_num${COLOREND},${GREEN}$ahead_num${COLOREND}"
-    elif [[ "$remote_state" == *ahead* ]]; then
-      ahead_num=$(echo "$remote_state" | grep -oh "ahead \d*" | grep -oh "\d*$")
-      out="$out${GREEN}$ahead_num${COLOREND}"
-    elif [[ "$remote_state" == *behind* ]]; then
-      behind_num=$(echo "$remote_state" | grep -oh "behind \d*" | grep -oh "\d*$")
-      out="$out${RED}$behind_num${COLOREND}"
+  if [[ -f "$BASH_COMPLETION_DIR/git-completion.bash" ]]; then
+    branch=`__git_ps1 "%s"`
+  else
+    branch=$(git symbolic-ref --short HEAD | tr -d '\n') || return
+  fi
+
+  if [[ `tput cols` -lt 110 ]]; then
+    branch=`echo $branch | sed s/feature/f/1`
+    branch=`echo $branch | sed s/hotfix/h/1`
+    branch=`echo $branch | sed s/release/\r/1`
+    branch=`echo $branch | sed s/master/mstr/1`
+    branch=`echo $branch | sed s/main/mn/1`
+    branch=`echo $branch | sed s/develop/dev/1`
+  fi
+
+  status=$(git status -sb 2> /dev/null)
+
+  if [[ $branch != "" ]]; then
+    if [[ $(echo "$status" | wc -l) -gt 1 ]]; then
+      out="$out${RED}$branch${COLOREND} "
+    else
+      out="$out${GREEN}$branch${COLOREND} "
+    fi
+  fi
+
+  remote_state=$(echo "$status" | grep -oh "\[.*\]")
+
+  if [[ "$remote_state" != "" ]]; then
+    out="$out${BLUE}[${COLOREND}"
+    ahead=$(echo "$status" | grep -oh "ahead \d*" | grep -oh "\d*$")
+    behind=$(echo "$status" | grep -oh "behind \d*" | grep -oh "\d*$")
+
+    if [[ $(echo "$ahead") -gt 0 ]] && [[ $(echo "$behind") -gt 0 ]]; then
+      out="$out${RED}$ahead${COLOREND},${GREEN}$behind${COLOREND}"
+    elif [[ $(echo "$ahead") -gt 0 ]]; then
+      out="$out${GREEN}$ahead${COLOREND}"
+    elif [[ $(echo "$behind") -gt 0 ]]; then
+      out="$out${GREEN}$behind${COLOREND}"
     fi
 
-    out="$out${BLUE}]${COLOREND}"
-    echo "$out "
+    out="$out${BLUE}]${COLOREND} "
+  fi
+
+  if [[ $out != "" ]]; then
+    echo "$out"
   fi
 }
 
@@ -210,11 +212,13 @@ prompt() {
     exit_status="${RED}▸${COLOREND} "
   fi
 
-  PS1="$(working_directory)$(parse_git_branch)$(parse_remote_state)${COLOREND}$exit_status"
+  PS1="$(working_directory)$(parse_git_prompt)$exit_status"
 }
 
 PROMPT_COMMAND=prompt
 source $HOME/.bash_secrets
+
+CONFIG="~/.config"
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 

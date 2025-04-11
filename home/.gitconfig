@@ -39,7 +39,7 @@
 	unstage = reset HEAD .
 # prunemerged = !git branch --merged | egrep -v "(^\*|main)" | xargs git branch -d
 [core]
-	editor = vim
+	editor = nvim
 	excludesfile = ~/.gitignore
 [color]
 	branch = auto

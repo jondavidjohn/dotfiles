@@ -2,14 +2,12 @@ name: hashicorp/atlas
 root: ~/Code/hashicorp/atlas
 pre_window: nvm use
 windows:
-  - app:
-      layout: main-vertical
+  - editor:
       panes:
-        - editor: vim -c "FZF"
-        - specs: bundle
-        - ember: cd frontend/atlas && npx yarn && npx yarn start
+        - editor: nvim -c "Telescope find_files"
   - services:
-      layout: even-horizontal
+      layout: tiled
       panes:
-        - console:
-        - stack: syrup stack up
+        - frontend: cd frontend/atlas && npx yarn && npx yarn start
+        - backend: syrup stack up
+        - console: bundle
